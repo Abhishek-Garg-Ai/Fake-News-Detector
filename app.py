@@ -108,8 +108,8 @@ def predict(text):
 
     text1=nlp(text)
     cosine_scores=[]
-    for title in title_lt:
-        text2=nlp(title)
+    for summary in summary_lt:
+        text2=nlp(summary)
         cosine_scores.append(text1.similarity(text2))
     #test_df['sim']=cosine_scores
     #print(test_df)
@@ -118,8 +118,8 @@ def predict(text):
         return sum(cosine_scores) / len(cosine_scores)
 
     average = Average(cosine_scores)
-    test_df['similarity']=cosine_scores
-    print(test_df)
+    #test_df['similarity']=cosine_scores
+    #print(test_df)
 
 
     prediction = 'Prediction of this news 📰 is REAL 🧐 ' if ((Av_random) >=0.5 and average >= 0.5) else 'Prediction for this  news 📰 is FAKE 🧐'
