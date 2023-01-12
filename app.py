@@ -76,6 +76,7 @@ def home():
     return render_template('index.html')
 
 def predict(text):
+    text=text.lower()
     test_list = search(text, tld='co.in', num=10, stop=10, pause=2)
     test_list = list(test_list)
     useless_domain = (
@@ -123,6 +124,8 @@ def predict(text):
 
 
     prediction = 'Prediction of this news 📰 is REAL 🧐 ' if ((Av_random) >=0.5 and average >= 0.5) else 'Prediction for this  news 📰 is FAKE 🧐'
+    if(text.find("not")!=-1):
+        prediction = 'Prediction of this news 📰 is FAKE 🧐 ' if ((Av_random) >=0.5 and average >= 0.5) else 'Prediction for this  news 📰 is REAL 🧐'
     return prediction
 
 
