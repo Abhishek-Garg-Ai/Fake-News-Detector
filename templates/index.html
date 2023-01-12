@@ -1,0 +1,102 @@
+	<!doctype html>
+<html lang="en">
+  <head>
+<img src="static/images/gla-university-logo.jpg"  class= "right" width="250" height="80"> </img>
+<img src="static/images/download.jpg" align="right" width="120" height="120" >
+
+			<a class="navbar-brand" href="/" color="green"></a>
+			<h4><div style="align:center;font-size: xxx-large"><b>Research Project: Identification  of Unreliability and fakeness in social media posts</b></div></h4>
+			<p style="text-align:center;font-size: xx-large;color: rgb(255, 0, 13);"><b>Department of computer Engineering & Applications </b></p>
+
+	<p style="text-align:center;font-size: xx-large;color: Red;">Duration: 03  years, Date of Start: 15 Feb 2020 </p>
+<title>Fake News Classifier</title>
+    <title>German News Classifier</title>
+    <!-- Required meta tags -->
+
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+
+</head>
+<body class="mx-auto">
+	<div class="container">
+   <div id="brandname">Machine Learning App </div>
+
+  <!--navbar links-->     
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+     <a class="navbar-brand" href="#">Fake News Classifier</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+    data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02" aria-expanded="false"
+    aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      </ul>
+    </div>
+  </nav>
+   <!--middle section-->
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+
+
+      </ul>
+    </div>
+  </nav>
+	<br>
+	<div class='container'>
+		<form action="/" method="POST">
+			<div class="col-three-forth text-center col-md-offset-2">
+				<div class="form-group">
+					<textarea class="form-control jTextarea mt-3" id="jTextarea'" rows="5" name="text"
+					 placeholder=" 👇 Enter Headline Here 🧐" required>{{text}}</textarea>
+
+					<br><br>
+					<button class="btn btn-primary btn-outline btn-md" type="submit" name="predict">Predict</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<br>
+	{% if result %}
+	<p style="text-align:center;color: chocolate;font-size: larger;"><strong>Prediction : {{result}} {{average}}</strong></p>
+	{% endif %}
+
+	<div class="footer">
+		<p style="text-align:right;font-size: x-large;color: Blue;">Principal Investigator: Prof. Dilip Kumar Sharma </p>
+		<p style="text-align:right;font-size: x-large;color: Blue;">Senior Research Assistant: Ms. Sonal Garg </p>
+    <p style="text-align:right;font-size: x-large;color: Blue;">Research Intern: Abhishek Garg </p>
+
+
+</div>
+
+<script>
+     function growTextarea (i,elem) {
+    var elem = $(elem);
+    var resizeTextarea = function( elem ) {
+        var scrollLeft = window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+        var scrollTop  = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        elem.css('height', 'auto').css('height', elem.prop('scrollHeight') );
+          window.scrollTo(scrollLeft, scrollTop);
+      };
+      elem.on('input', function() {
+        resizeTextarea( $(this) );
+      });
+      resizeTextarea( $(elem) );
+  }
+
+  $('.jTextarea').each(growTextarea);
+</script>
+</body>
+
+</html>
