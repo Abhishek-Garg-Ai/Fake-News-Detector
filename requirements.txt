@@ -14,6 +14,7 @@ feedparser==6.0.10
 filelock==3.9.0
 Flask==2.2.2
 google==3.0.0
+gunicorn==19.0.0
 idna==3.4
 importlib-metadata==6.0.0
 itsdangerous==2.1.2
