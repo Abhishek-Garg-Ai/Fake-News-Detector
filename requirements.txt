@@ -41,7 +41,7 @@ regex==2022.10.31
 requests==2.28.1
 requests-file==1.5.1
 scikit-learn==1.0.2
-scipy==1.10.0
+scipy
 sgmllib3k==1.0.0
 six==1.16.0
 smart-open==6.3.0
