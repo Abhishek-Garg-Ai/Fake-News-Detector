@@ -2,10 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import nltk
 import pandas as pd
 import numpy as np
-nltk.download('stopwords')
-from nltk.corpus import stopwords
 import re
-from nltk.stem.porter import PorterStemmer
 from googlesearch import search
 from tqdm import tqdm
 import spacy
@@ -33,12 +30,6 @@ def keepAlpha(sentence):
     alpha_sent = alpha_sent.strip()
     return alpha_sent
 nltk.download('punkt')
-stop_words = set(stopwords.words('english'))
-stop_words.update(['zero','one','two','three','four','five','six','seven','eight','nine','ten','may','also','across','among','beside','however','yet','within'])
-re_stop_words = re.compile(r"\b(" + "|".join(stop_words) + ")\\W", re.I)
-def removeStopWords(sentence):
-    global re_stop_words
-    return re_stop_words.sub(" ", sentence)
 
 import pickle
 from newspaper import Article
@@ -64,10 +55,9 @@ def get_data(url):
 # from sentence_transformers import SentenceTransformer,util
 
 app = Flask(__name__)
-ps = PorterStemmer()
 
-model = pickle.load(open('model.pkl', 'rb'))
-tfidfvect = pickle.load(open('tfidfvect.pkl', 'rb'))
+model = pickle.load(open('random_model.pkl', 'rb'))
+tfidfvect = pickle.load(open('tfidfvect2.pkl', 'rb'))
 # cosmodel = pickle.load(open('cossmodel.pkl', 'rb')).to('cpu')
 nlp=spacy.load('en_core_web_sm')
 
@@ -78,13 +68,12 @@ def home():
 def predict(text):
     text=text.lower()
     test_list = search(text, tld='co.in', num=10, stop=10, pause=2)
-    test_list = list(test_list)
     useless_domain = (
     'https://en.wikipedia', 'https://www.linkedin', 'https://in.linkedin', 'https://expertportals.com',
     'https://academictree.org', 'https://facebook.com', 'https://youtube.com', 'https://m.facebook.com',
     'https://www.facebook.com')
 
-    results = list(filter(lambda x: not x.startswith(useless_domain), test_list))
+    results = filter(lambda x: not x.startswith(useless_domain), test_list)
     title_lt = []
     keyword_lt = []
     summary_lt = []
@@ -99,7 +88,6 @@ def predict(text):
     test_df['summary'].apply(cleanHtml)
     test_df['summary'].apply(cleanPunc)
     test_df['summary'].apply(keepAlpha)
-    test_df['summary'].apply(removeStopWords)
     vectorized_test = tfidfvect.transform(test_df['summary'])
 
     test_df['Random_prob'] = model.predict_proba(vectorized_test)[:,0]
